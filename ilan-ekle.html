@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İlan Ekle – Prestij Emlak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAVİGASYON -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">Prestij <em>Emlak</em></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Ana Sayfa</a></li>
+      <li><a href="ilanlar.html">İlanlar</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+      <li><a href="ilan-ekle.html" class="btn-nav aktif-btn">+ İlan Ekle</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- SAYFA BAŞLIĞI -->
+<div class="sayfa-hero">
+  <div class="sayfa-hero-bg"></div>
+  <div class="container sayfa-hero-ici">
+    <p class="hero-tag">Ücretsiz & Hızlı</p>
+    <h1>İlan <span>Ekle</span></h1>
+    <p class="hero-sub">Mülkünüzü dakikalar içinde listeleyin, binlerce alıcıya ulaşın.</p>
+    <div class="ekmek-kirintisi">
+      <a href="index.html">Ana Sayfa</a>
+      <span>›</span>
+      <span>İlan Ekle</span>
+    </div>
+  </div>
+</div>
+
+<!-- FORM -->
+<section class="form-section" style="padding-top:3rem;">
+  <div class="container" style="max-width:900px">
+
+    <!-- Adım göstergesi -->
+    <div class="adimlar">
+      <div class="adim aktif-adim"><span>1</span><p>Mülk Bilgileri</p></div>
+      <div class="adim-cizgi"></div>
+      <div class="adim"><span>2</span><p>Fotoğraflar</p></div>
+      <div class="adim-cizgi"></div>
+      <div class="adim"><span>3</span><p>Yayınla</p></div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-grid">
+
+        <div class="form-group full">
+          <label>İlan Başlığı *</label>
+          <input type="text" id="f-baslik" placeholder="Örn: Kadıköy'de Lüks 3+1 Daire" />
+        </div>
+
+        <div class="form-group">
+          <label>Kategori *</label>
+          <select id="f-tip">
+            <option value="">Seçin</option>
+            <option>Satılık</option>
+            <option>Kiralık</option>
+            <option>Ticari</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>İlçe / Semt *</label>
+          <input type="text" id="f-konum" placeholder="Örn: Kadıköy, İstanbul" />
+        </div>
+
+        <div class="form-group">
+          <label>Fiyat (TL) *</label>
+          <input type="number" id="f-fiyat2" placeholder="Örn: 2500000" min="0" />
+        </div>
+
+        <div class="form-group">
+          <label>m² (Brüt)</label>
+          <input type="number" id="f-m2" placeholder="Örn: 120" min="0" />
+        </div>
+
+        <div class="form-group">
+          <label>Oda Sayısı</label>
+          <select id="f-oda2">
+            <option value="">Seçin</option>
+            <option>1+0</option><option>1+1</option><option>2+1</option>
+            <option>3+1</option><option>4+1</option><option>5+1</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Kat</label>
+          <input type="text" id="f-kat" placeholder="Örn: 3. Kat / Zemin" />
+        </div>
+
+        <div class="form-group">
+          <label>Yapım Yılı</label>
+          <input type="number" id="f-yil" placeholder="Örn: 2018" min="1900" max="2026" />
+        </div>
+
+        <div class="form-group full">
+          <label>Açıklama</label>
+          <textarea id="f-aciklama" rows="5" placeholder="Mülkünüzü detaylıca tanıtın..."></textarea>
+        </div>
+
+        <!-- FOTOĞRAF YÜKLEME -->
+        <div class="form-group full">
+          <label>Fotoğraflar</label>
+          <div class="foto-yukle-alan" id="foto-yukle-alan"
+            onclick="document.getElementById('foto-input').click()"
+            ondragover="dragOver(event)" ondrop="dropFoto(event)">
+            <input type="file" id="foto-input" accept="image/*" multiple style="display:none" onchange="fotolariIsle(event)" />
+            <div class="foto-yukle-ici">
+              <span class="foto-icon">📷</span>
+              <p><strong>Fotoğraf Yükle</strong></p>
+              <p class="foto-alt">Tıklayın veya sürükleyip bırakın · JPG, PNG, WEBP · Maks. 10 fotoğraf</p>
+            </div>
+          </div>
+          <div class="foto-onizleme" id="foto-onizleme"></div>
+        </div>
+
+      </div>
+
+      <div class="form-footer">
+        <button class="btn-iptal" onclick="formuSifirla()">Temizle</button>
+        <button class="btn-ekle" onclick="ilanEkleVeYonlendir()">İlanı Yayınla →</button>
+      </div>
+
+      <div class="form-basari" id="form-basari" style="display:none">
+        ✅ İlanınız başarıyla yayınlandı! İlanlar sayfasına yönlendiriliyorsunuz...
+      </div>
+    </div>
+
+    <!-- İpuçları -->
+    <div class="ipucu-grid">
+      <div class="ipucu-kart">
+        <span>💡</span>
+        <div>
+          <strong>Güçlü Başlık</strong>
+          <p>Konum ve öne çıkan özellikleri (manzara, yeni bina, merkezi konum) başlığa ekleyin.</p>
+        </div>
+      </div>
+      <div class="ipucu-kart">
+        <span>📸</span>
+        <div>
+          <strong>Kaliteli Fotoğraf</strong>
+          <p>En az 5 fotoğraf yükleyin. Gündüz çekilen, iyi aydınlatmalı görüntüler ilgiyi artırır.</p>
+        </div>
+      </div>
+      <div class="ipucu-kart">
+        <span>📝</span>
+        <div>
+          <strong>Detaylı Açıklama</strong>
+          <p>Ulaşım, yakın çevre, bina özellikleri ve mülkün avantajlarını mutlaka belirtin.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">Prestij <em>Emlak</em></span>
+      <p>© 2024 Tüm hakları saklıdır.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Hızlı Linkler</h4>
+      <a href="ilanlar.html">İlanlar</a>
+      <a href="ilan-ekle.html">İlan Ekle</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+    </div>
+    <div class="footer-iletisim">
+      <h4>İletişim</h4>
+      <p>📞 0850 123 45 67</p>
+      <p>✉️ info@prestijemklak.com</p>
+      <p>📍 Kadıköy, İstanbul</p>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => { navbarScroll(); });
+
+  function ilanEkleVeYonlendir() {
+    ilanEkle();
+    const basari = document.getElementById('form-basari');
+    if (basari.style.display !== 'none') {
+      setTimeout(() => { window.location.href = 'ilanlar.html'; }, 2000);
+    }
+  }
+</script>
+</body>
+</html>

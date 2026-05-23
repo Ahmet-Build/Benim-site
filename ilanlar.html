@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İlanlar – Prestij Emlak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAVİGASYON -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">Prestij <em>Emlak</em></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Ana Sayfa</a></li>
+      <li><a href="ilanlar.html" class="aktif-link">İlanlar</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+      <li><a href="ilan-ekle.html" class="btn-nav">+ İlan Ekle</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- SAYFA BAŞLIĞI -->
+<div class="sayfa-hero">
+  <div class="sayfa-hero-bg"></div>
+  <div class="container sayfa-hero-ici">
+    <p class="hero-tag">Tüm Mülkler</p>
+    <h1>Güncel <span>İlanlar</span></h1>
+    <p class="hero-sub">Türkiye'nin dört bir yanından binlerce mülk arasından size özel olanı bulun.</p>
+    <div class="ekmek-kirintisi">
+      <a href="index.html">Ana Sayfa</a>
+      <span>›</span>
+      <span>İlanlar</span>
+    </div>
+  </div>
+</div>
+
+<!-- FİLTRE + İLANLAR -->
+<section class="ilanlar-section" style="padding-top:3rem;">
+  <div class="container">
+
+    <!-- Filtre Çubuğu -->
+    <div class="filtre-bar">
+      <div class="filtre-group">
+        <label>Kategori</label>
+        <select id="f-kategori" onchange="filtrele()">
+          <option value="">Tümü</option>
+          <option>Satılık</option>
+          <option>Kiralık</option>
+          <option>Ticari</option>
+        </select>
+      </div>
+      <div class="filtre-group">
+        <label>Oda</label>
+        <select id="f-oda" onchange="filtrele()">
+          <option value="">Tümü</option>
+          <option>1+0</option><option>1+1</option><option>2+1</option>
+          <option>3+1</option><option>4+1</option><option>5+1</option>
+        </select>
+      </div>
+      <div class="filtre-group">
+        <label>Maks. Fiyat</label>
+        <select id="f-fiyat" onchange="filtrele()">
+          <option value="">Tümü</option>
+          <option value="500000">500K TL</option>
+          <option value="1000000">1M TL</option>
+          <option value="3000000">3M TL</option>
+          <option value="5000000">5M TL</option>
+          <option value="10000000">10M TL</option>
+        </select>
+      </div>
+      <div class="filtre-group">
+        <label>Sırala</label>
+        <select id="f-sirala" onchange="filtrele()">
+          <option value="yeni">En Yeni</option>
+          <option value="fiyat-artan">Fiyat ↑</option>
+          <option value="fiyat-azalan">Fiyat ↓</option>
+          <option value="m2">m² ↑</option>
+        </select>
+      </div>
+      <button class="btn-temizle" onclick="filtreTemizle()">Temizle</button>
+    </div>
+
+    <div class="ilan-sonuc-bilgi" id="ilan-sonuc-bilgi"></div>
+
+    <!-- İlan Grid -->
+    <div class="ilan-grid" id="ilan-grid"></div>
+    <p class="bos-mesaj" id="bos-mesaj" style="display:none">Arama kriterlerinize uygun ilan bulunamadı.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">Prestij <em>Emlak</em></span>
+      <p>© 2024 Tüm hakları saklıdır.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Hızlı Linkler</h4>
+      <a href="ilanlar.html">İlanlar</a>
+      <a href="ilan-ekle.html">İlan Ekle</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+    </div>
+    <div class="footer-iletisim">
+      <h4>İletişim</h4>
+      <p>📞 0850 123 45 67</p>
+      <p>✉️ info@prestijemklak.com</p>
+      <p>📍 Kadıköy, İstanbul</p>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <button class="modal-kapat" onclick="modalKapat()">✕</button>
+    <div id="modal-ici"></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // URL'den filtre parametresi varsa uygula
+    const params = new URLSearchParams(window.location.search);
+    const tip = params.get('tip');
+    const ara = params.get('ara');
+    if (tip) document.getElementById('f-kategori').value = tip;
+    filtrele(ara);
+    navbarScroll();
+  });
+</script>
+</body>
+</html>

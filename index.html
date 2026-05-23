@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prestij Emlak – Hayalinizdeki Eve Kavuşun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAVİGASYON -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">Prestij <em>Emlak</em></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="aktif-link">Ana Sayfa</a></li>
+      <li><a href="ilanlar.html">İlanlar</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+      <li><a href="ilan-ekle.html" class="btn-nav">+ İlan Ekle</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-tag">Türkiye'nin En Güvenilir Emlak Platformu</p>
+    <h1>Hayalinizdeki<br /><span>Eve Kavuşun</span></h1>
+    <p class="hero-sub">Binlerce ilan arasından size özel evi bulun. Satış, kiralık ve ticari mülkler tek çatı altında.</p>
+    <div class="hero-search">
+      <select id="hero-tip">
+        <option value="">Tür Seçin</option>
+        <option>Satılık</option>
+        <option>Kiralık</option>
+        <option>Ticari</option>
+      </select>
+      <input type="text" id="hero-arama" placeholder="İlçe, mahalle veya semt..." />
+      <button onclick="heroAra()">Ara</button>
+    </div>
+    <div class="hero-stats">
+      <div><strong id="cnt-toplam">0</strong><span>Aktif İlan</span></div>
+      <div><strong>12+</strong><span>Yıl Deneyim</span></div>
+      <div><strong>4.9★</strong><span>Müşteri Puanı</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="floating-card fc1">
+      <span class="fc-icon">🏠</span>
+      <div><strong>Yeni İlan</strong><p>Kadıköy, 3+1</p></div>
+    </div>
+    <div class="floating-card fc2">
+      <span class="fc-icon">📍</span>
+      <div><strong>Konum Doğrulandı</strong><p>Merkezi Lokasyon</p></div>
+    </div>
+  </div>
+</header>
+
+<!-- ÖZELLIKLER BANDI -->
+<section class="ozellik-bandi">
+  <div class="container">
+    <div class="ozellik-grid">
+      <div class="ozellik-item">
+        <span class="ozellik-ikon">🔍</span>
+        <div>
+          <strong>Akıllı Arama</strong>
+          <p>Filtreleyerek ideal mülkü bulun</p>
+        </div>
+      </div>
+      <div class="ozellik-item">
+        <span class="ozellik-ikon">📋</span>
+        <div>
+          <strong>Kolay İlan</strong>
+          <p>Dakikalar içinde ilanınızı yayınlayın</p>
+        </div>
+      </div>
+      <div class="ozellik-item">
+        <span class="ozellik-ikon">⚖️</span>
+        <div>
+          <strong>Hukuki Destek</strong>
+          <p>Uzman danışmanlık hizmeti</p>
+        </div>
+      </div>
+      <div class="ozellik-item">
+        <span class="ozellik-ikon">🏆</span>
+        <div>
+          <strong>12 Yıl Deneyim</strong>
+          <p>Güvenilir ve profesyonel hizmet</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÖNE ÇIKAN İLANLAR -->
+<section class="one-cikan-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Öne Çıkan İlanlar</h2>
+      <p>Editörlerimizin önerdiği seçkin mülkler</p>
+    </div>
+    <div class="ilan-grid" id="ilan-grid"><!-- JS ile doldurulur --></div>
+    <div class="tum-ilanlar-btn">
+      <a href="ilanlar.html" class="btn-gold">Tüm İlanları Gör →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">Prestij <em>Emlak</em></span>
+      <p>© 2024 Tüm hakları saklıdır.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Hızlı Linkler</h4>
+      <a href="ilanlar.html">İlanlar</a>
+      <a href="ilan-ekle.html">İlan Ekle</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+    </div>
+    <div class="footer-iletisim">
+      <h4>İletişim</h4>
+      <p>📞 0850 123 45 67</p>
+      <p>✉️ info@prestijemklak.com</p>
+      <p>📍 Kadıköy, İstanbul</p>
+    </div>
+  </div>
+</footer>
+
+<!-- İLAN DETAY MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <button class="modal-kapat" onclick="modalKapat()">✕</button>
+    <div id="modal-ici"></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+  // Ana sayfada sadece 3 öne çıkan ilan göster
+  document.addEventListener('DOMContentLoaded', () => {
+    const oneCikanlar = ilanlar.slice(0, 3);
+    kartlariRender(oneCikanlar, 'ilan-grid');
+    sayacAnimasyonu();
+    navbarScroll();
+  });
+</script>
+</body>
+</html>
